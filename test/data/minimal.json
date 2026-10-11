@@ -1,0 +1,8 @@
+{
+  "label": "tiny",
+  "scalars": {
+    "b": false,
+    "i32": 0,
+    "f64": 0.0
+  }
+}

@@ -1,0 +1,49 @@
+// Schema used by the interop tests of the Racket `flatbuffers` package.
+//
+// Field ids follow declaration order (0, 1, 2, ...); the Racket tests read
+// and write fields by these numeric ids.
+
+namespace fbtest;
+
+// Every scalar type plus a string, a [ubyte] vector.
+table Scalars {
+  b:    bool;      // id 0
+  i8:   int8;      // id 1
+  u8:   uint8;     // id 2
+  i16:  int16;     // id 3
+  u16:  uint16;    // id 4
+  i32:  int32;     // id 5
+  u32:  uint32;    // id 6
+  i64:  int64;     // id 7
+  u64:  uint64;    // id 8
+  f32:  float32;   // id 9
+  f64:  float64;   // id 10
+  s:    string;    // id 11
+  data: [ubyte];   // id 12
+}
+
+table Inner {
+  x:    int32;     // id 0
+  y:    int32;     // id 1
+  name: string;    // id 2
+}
+
+// A string, a nested table, a vector of tables, a vector of strings and a
+// scalar-heavy sub-table.
+table Outer {
+  label:   string;    // id 0
+  inner:   Inner;     // id 1
+  inners:  [Inner];   // id 2
+  tags:    [string];  // id 3
+  scalars: Scalars;   // id 4
+}
+
+// Used for the alignment fuzz test (uint64 fields next to strings of
+// varying lengths force non-trivial alignment padding).
+table Aligned {
+  a: uint64;  // id 0
+  b: uint64;  // id 1
+  s: string;  // id 2
+}
+
+root_type Outer;

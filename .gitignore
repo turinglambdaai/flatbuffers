@@ -1,0 +1,10 @@
+# Racket build artifacts
+compiled/
+**/compiled/
+doc/
+
+# Test outputs
+*.bin
+
+# OS noise
+.DS_Store

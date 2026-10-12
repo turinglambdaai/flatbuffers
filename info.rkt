@@ -8,6 +8,5 @@
 (define license 'MIT)
 (define deps '("base" "rackunit-lib"))
 (define build-deps '("scribble-lib" "racket-doc" "rackunit-lib"))
-(define scribblings '(("flatbuffers/scribblings/flatbuffers.scrbl" ())))
 ;; `raco test -p` should run only the test suite, not the .scrbl module.
 (define test-omit-paths '("flatbuffers/scribblings/flatbuffers.scrbl"))

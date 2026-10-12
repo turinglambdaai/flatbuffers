@@ -14,7 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: racket/setup-racket@v1
+      - name: Set up Racket
+        uses: Bogdanp/setup-racket@v1.12
         with:
           version: stable
 

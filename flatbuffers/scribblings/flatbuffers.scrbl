@@ -148,6 +148,13 @@ verified with @tt{flatc -t}, read by the official C++/Java/Python runtimes,
 and so on.  The package's test suite does exactly that (see
 @secref["interop"]).
 
+@defstruct*[fb ([bs bytes?])]{A validated FlatBuffers buffer.  The byte
+ string is held zero-copy.}
+
+@defstruct*[table ([fb fb?] [pos exact-nonnegative-integer?])]{A table
+ reference: the owning buffer plus the table's absolute byte position;
+ @racket[table-pos] exposes the position.}
+
 @section{Reading buffers}
 
 @defproc[(open-flatbuffer [bs bytes?]) fb?]{
@@ -244,6 +251,9 @@ A @racket[table] pairs a buffer with the table's absolute byte position;
 @defproc[(make-builder [capacity exact-positive-integer? 1024]) builder?]{
  An empty builder.  The internal buffer grows as needed.}
 
+@defproc[(builder? [v any/c]) boolean?]{
+ Recognizes builders.}
+
 @defproc[(builder-offset [b builder?]) exact-nonnegative-integer?]{
  The number of bytes written so far; this is the builder's ``offset''
  currency.}
@@ -332,6 +342,12 @@ two padding primitives are exposed for completeness:
  Pads so the offset becomes aligned after @racket[future-bytes] further
  bytes are written — the primitive behind string and vector prefix
  alignment.}
+
+@defproc[(builder-prepend-uoffset [b builder?] [offset exact-nonnegative-integer?]) void?]{
+ Prepends a 4-byte @tt{uoffset} pointing forward to
+ @racket[offset], aligned to 4.  This is how strings, vectors and
+ tables are referenced from the objects that use them; the example at
+ the top of this manual builds its nested structures with it.}
 
 @section[#:tag "interop"]{Interoperability with flatc}
 

@@ -1,5 +1,7 @@
 # flatbuffers
 
+**English** · [中文](README.zh-CN.md)
+
 [![CI](https://github.com/turinglambdaai/flatbuffers/actions/workflows/ci.yml/badge.svg)](https://github.com/turinglambdaai/flatbuffers/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Pure-Racket implementation of the [FlatBuffers](https://flatbuffers.dev/)
